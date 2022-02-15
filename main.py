@@ -15,7 +15,18 @@ def foo(x):
 
 def longest_run(mylist, key):
     ### TODO
-    pass
+  count = 0
+  longestRun = 0
+  for i,v in enumerate(mylist):
+    if v == key:
+      count+=1
+      if (count > longestRun):
+        longestRun = count
+    else:
+      count = 0
+  return longestRun
+        
+        
 
 
 class Result:
