@@ -42,20 +42,22 @@ class Result:
               (self.longest_size, self.left_size, self.right_size, self.is_entire_range))
     
 
-results = Result(0, 0, 0, False)
-count = 0
-maxCount = 0
 def longest_run_recursive(mylist, key):
   #Base Case
   if(len(mylist) == 1):
     if(mylist[0] == key):
-      count = count + 1
+      return Result(1, 1, 1, True)
     else:
-      count = 0
+      return Result(0, 0, 0, False)
   else:
     mid = len(mylist)//2
     left = longest_run_recursive(mylist[:mid], key)
     right = longest_run_recursive(mylist[mid:], key)
+    if(left.is_entire_range == right.is_entire_range):
+      return Result(left.longest_size + right.longest_size, left.longest_size + right.longest_size, left.longest_size + right.longest_size)
+    elif(left.is_entire_range == True and right.is_entire_range == False):
+      return Result()
+      
     
 
 ## Feel free to add your own tests here.
