@@ -41,10 +41,22 @@ class Result:
         return('longest_size=%d left_size=%d right_size=%d is_entire_range=%s' %
               (self.longest_size, self.left_size, self.right_size, self.is_entire_range))
     
-    
+
+results = Result(0, 0, 0, False)
+count = 0
+maxCount = 0
 def longest_run_recursive(mylist, key):
-    ### TODO
-    pass
+  #Base Case
+  if(len(mylist) == 1):
+    if(mylist[0] == key):
+      count = count + 1
+    else:
+      count = 0
+  else:
+    mid = len(mylist)//2
+    left = longest_run_recursive(mylist[:mid], key)
+    right = longest_run_recursive(mylist[mid:], key)
+    
 
 ## Feel free to add your own tests here.
 def test_longest_run():
