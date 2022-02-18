@@ -41,8 +41,11 @@ class Result:
         return('longest_size=%d left_size=%d right_size=%d is_entire_range=%s' %
               (self.longest_size, self.left_size, self.right_size, self.is_entire_range))
     
-
 def longest_run_recursive(mylist, key):
+  answer = _longest_run_recursive(mylist, key)
+  return answer.longest_size
+
+def _longest_run_recursive(mylist, key):
   #Base Case
   if(len(mylist) == 1):
     if(mylist[0] == key):
@@ -70,6 +73,8 @@ def longest_run_recursive(mylist, key):
 
 ## Feel free to add your own tests here.
 def test_longest_run():
-    assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == Result(0, 0, 3, False)
+    assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3
+    assert longest_run([12,12,12,12,12,12,12,0,12,1], 12) == 7
+    assert longest_run([12,12,12,12,8,12,12,0,12,12], 12) == 4
 
 
