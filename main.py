@@ -54,14 +54,22 @@ def longest_run_recursive(mylist, key):
     left = longest_run_recursive(mylist[:mid], key)
     right = longest_run_recursive(mylist[mid:], key)
     if(left.is_entire_range == right.is_entire_range):
-      return Result(left.longest_size + right.longest_size, left.longest_size + right.longest_size, left.longest_size + right.longest_size)
+      return Result(left.longest_size + right.longest_size, left.longest_size + right.longest_size, left.longest_size + right.longest_size, True)
     elif(left.is_entire_range == True and right.is_entire_range == False):
-      return Result()
+      return Result(left.longest_size+right.left_size, right.right_size, left.longest_size+right.left_size, False)
+    elif(right.is_entire_range == True and left.is_entire_range == False):
+      return Result(left.longest_size+right.left_size, right.right_size, left.longest_size+right.left_size, False)
+    else:
+      if(left.right_size == 0 and right.left_size == 0):
+        return Result(left.left_size, right.right_size, max(left.longest_size, right.longest_size))
+      #if(left.right_size > 0 and right.left_size > 0)
+      else:
+        return Result(left.left_size, right.right_size, max(left.longest_size, right.longest_size, left.right_size + left.left_size))
       
     
 
 ## Feel free to add your own tests here.
 def test_longest_run():
-    assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == 3
+    assert longest_run([2,12,12,8,12,12,12,0,12,1], 12) == Result(0, 0, 3, False)
 
 
