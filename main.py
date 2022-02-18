@@ -52,6 +52,8 @@ def _longest_run_recursive(mylist, key):
       return Result(1, 1, 1, True)
     else:
       return Result(0, 0, 0, False)
+
+  #Split list into left and right, then recurse
   else:
     mid = len(mylist)//2
     left = longest_run_recursive(mylist[:mid], key)
